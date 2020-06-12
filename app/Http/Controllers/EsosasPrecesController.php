@@ -24,7 +24,7 @@ class EsosasPrecesController extends Controller
      */
     public function create()
     {
-        //
+        return view('order_create');
     }
 
     /**

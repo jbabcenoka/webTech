@@ -13,7 +13,7 @@ class CreateEsosasPrecesTable extends Migration
      */
     public function up()
     {
-        Schema::create('_esosas_preces', function (Blueprint $table) {
+        Schema::create('Esosas_preces', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string("PartijasKods",20)->unique();
@@ -21,8 +21,8 @@ class CreateEsosasPrecesTable extends Migration
             $table->date("PiegadesDatums");
             $table->integer("ZieduSkaits");
             $table->string("ZiedaPuskaVeids",20);
-            //$table->foreign('ZiedaPuskaVeids')->references('ZiedaPuskaVeids')->on('Ziedu_glab_apstakli');
-        });
+            $table->foreign('ZiedaPuskaVeids')->references('ZiedaPuskaVeids')->on('Ziedu_glab_apstakli');
+	  });
     }
 
     /**
@@ -32,6 +32,6 @@ class CreateEsosasPrecesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_esosas_preces');
+        Schema::dropIfExists('esosas_preces');
     }
 }

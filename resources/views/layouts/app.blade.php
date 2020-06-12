@@ -33,11 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                           <li><a class="nav-link">Home</a></li>
+                           <li><a class="nav-link">Orders</a></li>
+                           <li><a class="nav-link">About</a></li>
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li><a class="nav-link">LV</a></li>
+                         <li><a class="nav-link">ENG</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
