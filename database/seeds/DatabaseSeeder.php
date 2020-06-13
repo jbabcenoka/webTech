@@ -54,6 +54,14 @@ class DatabaseSeeder extends Seeder
         EsosasPreces::create(array('id'=>13,'PartijasKods'=>'kods23', 'DerigumaTermins'=>'2020-07-09', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>11, 'ZiedaPuskaVeids'=>'Puskis Flora' ));
 
 
-      
+        EsosasPreces::create(array('id'=>8,'PartijasKods'=>'kods43', 'DerigumaTermins'=>'2020-07-07', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Puskis Milestiba' ));
+        EsosasPreces::create(array('id'=>14,'PartijasKods'=>'kods65', 'DerigumaTermins'=>'2020-07-06', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Puskis Ziema' ));
+        EsosasPreces::create(array('id'=>15,'PartijasKods'=>'kods78', 'DerigumaTermins'=>'2020-07-05', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Puskis Vasara' ));
+        EsosasPreces::create(array('id'=>16,'PartijasKods'=>'kods89', 'DerigumaTermins'=>'2020-07-04', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Astromerijas' ));
+        EsosasPreces::create(array('id'=>17,'PartijasKods'=>'kods90', 'DerigumaTermins'=>'2020-07-03', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Krizantemas' ));
+        EsosasPreces::create(array('id'=>18,'PartijasKods'=>'kods34', 'DerigumaTermins'=>'2020-07-01', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Lilijas' ));
+        EsosasPreces::create(array('id'=>19,'PartijasKods'=>'kods47', 'DerigumaTermins'=>'2020-07-05', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Puskis Maja' ));
+        EsosasPreces::create(array('id'=>20,'PartijasKods'=>'kods31', 'DerigumaTermins'=>'2020-07-09', 'PiegadesDatums'=>'2020-05-19','ZieduSkaits'=>0, 'ZiedaPuskaVeids'=>'Puskis Vesture' ));
+
     }
 }

@@ -27,4 +27,8 @@ Route::redirect('/', 'EsosasPreces');
 Route::resource('EsosasPreces', 'EsosasPrecesController');
 
 Auth::routes();
- Route::get('/about', 'VeikalsController@index');
+Route::get('/about', 'VeikalsController@index');
+ 
+
+
+Route::get('/{id?}', 'OrderController@create');
