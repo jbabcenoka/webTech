@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\EsosasPreces;
-use App\ZieduGlabApstakli;
 use Illuminate\Http\Request;
 
-class EsosasPrecesController extends Controller
+class VeikalsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +12,8 @@ class EsosasPrecesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $glab_apst= ZieduGlabApstakli::orderBy('ZiedaPuskaVeids')->get();
-        $flowers= EsosasPreces::orderBy('ZiedaPuskaVeids')->get();
-        return view('EsosasPreces', array('flowers'=>$flowers, 'glab_apst'=>$glab_apst));
+    {
+        return view('about');
     }
 
     /**
@@ -27,7 +23,7 @@ class EsosasPrecesController extends Controller
      */
     public function create()
     {
-        return view('order_create');
+        //
     }
 
     /**

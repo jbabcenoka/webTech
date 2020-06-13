@@ -19,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 
 Auth::routes();
 Route::redirect('/', 'EsosasPreces');
 Route::resource('EsosasPreces', 'EsosasPrecesController');
+
+Auth::routes();
+ Route::get('/about', 'VeikalsController@index');

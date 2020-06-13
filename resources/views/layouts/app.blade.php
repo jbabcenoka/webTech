@@ -35,7 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                            <li><a class="nav-link">Home</a></li>
                            <li><a class="nav-link">Orders</a></li>
-                           <li><a class="nav-link">About</a></li>
+                           <li><a class="nav-link" href="{{ url('/about') }}">About</a></li>
 
                     </ul>
 
