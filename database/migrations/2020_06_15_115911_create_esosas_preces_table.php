@@ -11,7 +11,7 @@ class CreateEsosasPrecesTable extends Migration
      *
      * @return void
      */
-    public function up()
+   public function up()
     {
         Schema::create('Esosas_preces', function (Blueprint $table) {
             $table->id();
@@ -24,6 +24,7 @@ class CreateEsosasPrecesTable extends Migration
             $table->foreign('ZiedaPuskaVeids')->references('ZiedaPuskaVeids')->on('Ziedu_glab_apstakli');
 	  });
     }
+
 
     /**
      * Reverse the migrations.

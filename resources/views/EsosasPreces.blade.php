@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
 <div class="container">
     <div class="row">
         <img src="{{  url('/images/wallpaper.jpg') }}" width="100%" height="300px" alt="foto" >
@@ -13,17 +11,20 @@
                               <h2 class="list-group-item list-group-item-primary">Filter box</h2>
                                <div class="card-body">
                                    
+                                   <div class="second" id="tmp">
+                                  
+                                    <label for="search" id="label-for-search">Flower:</label>      
+                                    <input type="search" id="search" placeholder="Search flowers..." oninput="showproducts({{$flowers}})" style="width:75%" >
                                 </div>
-                        </div>
-                        <div class="card-body">
-                            aalalla
+                                   
+                                </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="card">
                              <h2 class="list-group-item list-group-item-primary">Flowers</h2>
                              @foreach ($flowers as $flower) 
-                                            <div class="list-group-item">
+                                            <div class="list-group-item" id="{{$flower->ZiedaPuskaVeids}}">
                                                 <div class='first'>
                                                     @switch($flower->ZiedaPuskaVeids) 
                                                         @case('Frezijas') <img src="{{  url('/images/frezijas.jpg') }}" alt="foto" class="ziedi" > @break
@@ -72,3 +73,28 @@
                 </div>
 </div>
 @endsection
+<script>
+function showproducts(flowers){
+
+    let result = flowers.map(({ ZiedaPuskaVeids }) => ZiedaPuskaVeids)
+    var name = document.getElementById("search").value;
+
+    for(let i=0; i<20; i++){
+        var container = document.getElementById(result[i]); 
+        var n =result[i].toLowerCase();
+        if(container.hidden==false && name.length>=1){
+            if(result[i].toLowerCase().includes(name)) { container.hidden=false;}
+            else container.hidden=true;
+        }
+        if(name.length<1){
+            for(let i=0; i<20; i++){
+                var container = document.getElementById(result[i]);
+                container.hidden=false;
+            }
+        }
+    }
+
+
+  
+}
+</script>

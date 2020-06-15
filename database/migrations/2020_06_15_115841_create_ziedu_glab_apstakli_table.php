@@ -11,7 +11,7 @@ class CreateZieduGlabApstakliTable extends Migration
      *
      * @return void
      */
-    public function up()
+   public function up()
     {
        Schema::create('Ziedu_glab_apstakli', function (Blueprint $table) {
             $table->id();

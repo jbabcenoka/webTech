@@ -11,7 +11,8 @@ class CreatePiegadatajsTable extends Migration
      *
      * @return void
      */
-    public function up()
+  
+ public function up()
     {
         Schema::create('Piegadatajs', function (Blueprint $table) {
             $table->id();
@@ -22,7 +23,7 @@ class CreatePiegadatajsTable extends Migration
             $table->string("PUzvards",20)->nullable();
             $table->string("UznNosaukums",20)->nullable();
             $table->integer("Telefons");
-            $table->decimal("CenaParVienu",2,2);
+            $table->float("CenaParVienu");
             $table->boolean("BooleanPuskisZieds");
             $table->foreignId('adrese_id')->constrained();
         });

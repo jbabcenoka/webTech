@@ -16,12 +16,12 @@ class CreateVeikalaDarbinieksTable extends Migration
          Schema::create('Veikala_darbinieks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->decimal('DarbaAlga',6,2);
+            $table->float('DarbaAlga');
             $table->date("AtvalinajumaSakums")->nullable();
             $table->date("AtvalinajumaBeigas")->nullable();
             $table->string("PersKods",12)->unique();
             $table->foreignId('Amats_id')->constrained();
-            $table->foreign('PersKods')->references('PersKods')->on('Persona');
+            $table->foreign('PersKods')->references('PersKods')->on('Personas');
         });
     }
 

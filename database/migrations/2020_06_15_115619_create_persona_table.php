@@ -11,18 +11,21 @@ class CreatePersonaTable extends Migration
      *
      * @return void
      */
-    public function up()
+     public function up()
     {
-        Schema::create('Persona', function (Blueprint $table) {
+        Schema::create('Personas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string("PersKods",12)->unique();
             $table->string("Vards",30);
-            $table->string("OtraisVards",30);
+            $table->string("OtraisVards",30)->nullable();
             $table->string("Uzvards",30);	
             $table->integer("Telefons");
+            //$table->integer("adreseid");
+            $table->foreignId('adrese_id')->constrained();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -31,6 +34,6 @@ class CreatePersonaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persona');
+        Schema::dropIfExists('personas');
     }
 }

@@ -11,7 +11,7 @@ class CreateAmatsTable extends Migration
      *
      * @return void
      */
-    public function up()
+     public function up()
     {
         Schema::create('Amats', function (Blueprint $table) {
             $table->id();

@@ -32,3 +32,7 @@ Route::get('/about', 'VeikalsController@index');
 
 
 Route::get('/{id?}', 'OrderController@create');
+
+
+Auth::routes();
+Route::post('/show','OrderController@store');

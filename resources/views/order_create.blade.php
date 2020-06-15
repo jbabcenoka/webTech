@@ -1,18 +1,83 @@
 <div>@extends('layouts.app')
 @section('content')
+<script type="application/javascript">
+    function validate(){
+        var count = ($("#change_me").val());
+        if(count>=0) summa();
+        else {
+            document.getElementById("total-price").innerHTML = "Total: 0.00 €";
+        }
+    }
+    $(document).ready(function () {
+        $("#change_me").change(function () {
+            validate();
+          //  summa();
+        });
+    });
+    
+    function summa(){
+       // var start = new Date($("#rental_start").val());
+        //var end = new Date($("#rental_end").val());
+       // var days = (end.getTime()-start.getTime())/(3600000 * 24)
+        var days = $("#change_me").val();
+        //var cena = $("#price").val();
+        //var total = cena*days;
+       // total = Number.parseFloat(total).toFixed(2);
+       total =days*{{$cena}};
+       total = Number.parseFloat(total).toFixed(2);
+        document.getElementById("total-price").innerHTML = "Total:  "+total+" €";
+    }
+   
+    function myFunction() {
+        var tmp;
+        if (confirm("Are you want to confirm your order ?") == true) {
+            tmp = "OK!";
+        } else {
+            tmp = "BAD!";
+        }
+    }
+</script>
 <div class="container">
     <div class="row">
             <div class="col-sm">
                 <div class="card">
-                    {{$flower->ZiedaPuskaVeids}}
+                    <div class="list-group-item list-group-item-primary"><h4>Order information</h4></div>
+                    
+                        <h3> {{$flower->ZiedaPuskaVeids}} </h3>
+                  <div>   Count in shop: {{$flower->ZieduSkaits}} </div>
+                    <div id="total-price">Total: {{$cena}} €</div>
+  @switch($flower->ZiedaPuskaVeids) 
+                        @case('Frezijas') <img src="{{  url('/images/frezijas.jpg') }}" alt="foto"  class="photo"> @break
+                        @case('Astromerijas') <img src="{{  url('/images/astromerijas.jpg') }}" alt="foto"  class="photo"> @break
+                        @case('Gerbazas') <img src="{{  url('/images/gerbazas.jpg') }}"  alt="foto" cclass="photo"> @break
+                        @case('Hortenzijas') <img src="{{  url('/images/hortenzijas.jpg') }}"  alt="foto"  class="photo"> @break
+                        @case('Krizantemas') <img src="{{  url('/images/hrizantemas.jpg') }}"  alt="foto"  class="photo"> @break
+                        @case('Lavanda') <img src="{{  url('/images/lavandas.jpg') }}"  alt="foto"  class="photo"> @break
+                        @case('Lilijas') <img src="{{  url('/images/lilija.jpg') }}" alt="foto"  class="photo"> @break
+                        @case('Nelkes') <img src="{{  url('/images/nelkes.jpg') }}"  alt="foto" class="photo"> @break
+                        @case('Orhidejas') <img src="{{  url('/images/orhidejas.jpg') }}" alt="foto" class="photo"> @break
+                        @case('Peonijas') <img src="{{  url('/images/peonijas.jpg') }}" alt="foto"  class="photo" @break
+                        @case('Puskis Flora') <img src="{{  url('/images/flora.jpg') }}" alt="foto"  class="photo"> @break
+                        @case('Puskis Luiza') <img src="{{  url('/images/luiza.jpg') }}" alt="foto"  class="photo"> @break
+                        @case('Puskis Maja') <img src="{{  url('/images/maija.jpg') }}"  alt="foto" class="photo"> @break
+                        @case('Puskis Milestiba') <img src="{{  url('/images/milestiba.jpg') }}" alt="foto"  class="photo"> @break
+                        @case('Puskis Pavasara') <img src="{{  url('/images/pavasara.jpg') }}"  alt="foto"  class="photo"> @break
+                        @case('Puskis Vasara') <img src="{{  url('/images/vasara.jpg') }}"  alt="foto" class="photo"> @break
+                        @case('Puskis Vesture') <img src="{{  url('/images/vesture.jpg') }}"  alt="foto"  class="photo"> @break
+                        @case('Puskis Ziema') <img src="{{  url('/images/ziema.jpg') }}"  alt="foto" class="photo"> @break
+                        @case('Rozes') <img src="{{  url('/images/rozes.jpg') }}"  alt="foto"  class="photo"> @break
+                        @case('Tulpes') <img src="{{  url('/images/tulpes.jpg') }}" alt="foto"  class="photo"> @break
+                    @endswitch
+                   
                 </div> 
+                   
             </div>
          <div class="col-sm-8">
              
              <div class="card">
                  <div class="list-group-item list-group-item-primary"><h4>Order placing</h4></div>
                  <div class="list-group-item"class="dates" >
-                {!! Form::open() !!} 
+                {!! Form::open(array('action'=>'OrderController@store')) !!} 
                     <div class="form-group">
                         {{Form::label('name','Name')}}
                         {{Form::text('name','',['class'=>'form-control','placeholder'=>'Name'])}}
@@ -31,12 +96,43 @@
                         </span>
                         @endif 
                     </div>
+                     <div class="form-group">
+                        {{Form::label('perskods','Person code')}}
+                        {{Form::text('perskods','',['class'=>'form-control','placeholder'=>'Person code'])}}
+                        @if ($errors->has('perskods'))
+                        <span >
+                            <strong>{{ $errors->first('perskods') }}</strong>
+                        </span>
+                        @endif 
+                    </div>
+                    <h4> Your address </h4>
+                
                     <div class="form-group">
-                        {{Form::label('address','Address')}}
-                        {{Form::text('address','',['class'=>'form-control','placeholder'=>'Address'])}}
-                        @if ($errors->has('address'))
+                        
+                        {{Form::label('city','City')}}
+                        {{Form::text('city','',['class'=>'form-control','placeholder'=>'City'])}}
+                        @if ($errors->has('city'))
                         <span>
-                            <strong>{{ $errors->first('address') }}</strong>
+                            <strong>{{ $errors->first('city') }}</strong>
+                        </span>
+                        @endif 
+                    </div>
+                    <div class="form-group">
+                        {{Form::label('street','Street')}}
+                        {{Form::text('street','',['class'=>'form-control','placeholder'=>'Street'])}}
+                        @if ($errors->has('street'))
+                        <span>
+                            <strong>{{ $errors->first('street') }}</strong>
+                        </span>
+                        @endif 
+                    </div>
+                    
+                    <div class="form-group" class="change_me">
+                        {{Form::label('apartment','Apartment')}}
+                        {{Form::number('apartment','',['class'=>'form-control','id'=>'change_me','placeholder'=>'Apartment'])}}
+                        @if ($errors->has('apartment'))
+                        <span>
+                            <strong>{{ $errors->first('apartment') }}</strong>
                         </span>
                         @endif 
                     </div>
@@ -51,7 +147,7 @@
                         @endif 
                         <br>
                     </div>
-                    {{Form::submit('Submit',['class'=>'btn btn-primary'])}}
+                    {{Form::submit('Submit',['class'=>'btn btn-primary'], ['skaits' => $flower->ZieduSkaits],['partijaskods' => $flower->PartijasKods] ,['ZiedaPuskaVeids' => $flower->ZiedaPuskaVeids])}}
                     {!!Form::close()!!}
                  </div>
              </div>

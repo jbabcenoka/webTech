@@ -12,4 +12,7 @@ class Persona extends Model
     public function pardotie_un_bojatie() {
         return $this->hasOne('App\PardotieUnBojatie');
     }
+    public function adrese() {
+        return $this->hasOne('App\Adrese');
+    }
 }

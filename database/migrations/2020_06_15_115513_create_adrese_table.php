@@ -11,7 +11,7 @@ class CreateAdreseTable extends Migration
      *
      * @return void
      */
-    public function up()
+     public function up()
     {
         Schema::create('Adreses', function (Blueprint $table) {
             $table->id();
