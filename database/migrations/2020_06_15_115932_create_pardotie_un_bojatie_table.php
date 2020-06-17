@@ -22,9 +22,11 @@ class CreatePardotieUnBojatieTable extends Migration
             $table->date("Datums");
             $table->string("ZiedaPuskaVeids",20);
             $table->boolean("BooleanPard");
-            $table->foreign('PersKods')->references('PersKods')->on('Personas');
+            $table->foreignId('users_id')->constrained();
+            $table->foreignId('persona_id')->constrained();
             $table->foreign('PartijasKods')->references('PartijasKods')->on('Esosas_preces');
             $table->foreign('ZiedaPuskaVeids')->references('ZiedaPuskaVeids')->on('Piegadatajs');
+
 	 });
     }
 

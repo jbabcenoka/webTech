@@ -30,8 +30,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                            <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                           <li><a class="nav-link">Orders</a></li>
+                           @if (Auth::check()) 
+                           <li><a class="nav-link" href="{{ url('allorders/'.Auth::user()->id) }}">Orders</a></li>
+                           @endif
                            <li><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+                           @if (Auth::check() && Auth::user()->role ==true) 
+                           <li><a class="nav-link" href="{{ url('shop-orders/') }}">Administrator tools</a></li>
+                           @endif
 
                     </ul>
 

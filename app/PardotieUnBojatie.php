@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PardotieUnBojatie extends Model
 {
+   public $table = "pardotie_un_bojatie";
+    
    public function esosas_preces() {
         return $this->belongsTo('App\EsosasPreces');
     }

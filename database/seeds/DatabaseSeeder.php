@@ -7,6 +7,8 @@ use App\Piegadatajs;
 use App\Amats;
 use App\VeikalaDarbinieks;
 use App\Persona;
+use App\User;
+use App\Adrese;
 class DatabaseSeeder extends Seeder
 {
 
@@ -18,6 +20,11 @@ class DatabaseSeeder extends Seeder
         Piegadatajs::truncate();
         Amats::truncate();
         VeikalaDarbinieks::truncate();
+        Persona::truncate();
+        Adrese::truncate();
+        User::truncate();
+        
+       User::create(array('id'=>1, 'name'=>'Administrator','email'=>'admin@ziedi.com','password'=>bcrypt('secret'),'role'=>true));
 
        ZieduGlabApstakli::create(array('id' => 1,'ZiedaPuskaVeids' => 'Rozes','Mitrums' => 85.00,'Temperatura' => 10.00));
        ZieduGlabApstakli::create(array('id' => 2,'ZiedaPuskaVeids' => 'Tulpes','Mitrums' => 75.00,'Temperatura' => 15.00));
@@ -104,16 +111,16 @@ class DatabaseSeeder extends Seeder
         Amats::create(array('id'=>10, 'AmataNosaukums'=>'Dizaineris'));
         
         
-        VeikalaDarbinieks::create(array('id'=>1, 'DarbaAlga'=>2020.99, 'AtvalinajumaSakums'=>'2020-08-25', 'AtvalinajumaBeigas'=>'2020-09-26', 'PersKods'=>'111065-11836', 'Amats_id'=>1));
-        VeikalaDarbinieks::create(array('id'=>2, 'DarbaAlga'=>960.00, 'AtvalinajumaSakums'=>'2020-08-25', 'AtvalinajumaBeigas'=>'2020-09-26', 'PersKods'=>'111066-11838', 'Amats_id'=>2));
-        VeikalaDarbinieks::create(array('id'=>3, 'DarbaAlga'=>870.00, 'AtvalinajumaSakums'=>'2020-08-30', 'AtvalinajumaBeigas'=>'2020-09-30', 'PersKods'=>'110800-25847', 'Amats_id'=>3));
-        VeikalaDarbinieks::create(array('id'=>4, 'DarbaAlga'=>790.00, 'AtvalinajumaSakums'=>'2020-09-05', 'AtvalinajumaBeigas'=>'2020-09-20', 'PersKods'=>'040850-65214', 'Amats_id'=>4));
-        VeikalaDarbinieks::create(array('id'=>5, 'DarbaAlga'=>750.00, 'AtvalinajumaSakums'=>'2020-09-15', 'AtvalinajumaBeigas'=>'2020-09-30', 'PersKods'=>'010108-54796', 'Amats_id'=>5));
-        VeikalaDarbinieks::create(array('id'=>6, 'DarbaAlga'=>850.00, 'AtvalinajumaSakums'=>'2020-08-10', 'AtvalinajumaBeigas'=>'2020-08-30', 'PersKods'=>'020218-10102', 'Amats_id'=>6));
-        VeikalaDarbinieks::create(array('id'=>7, 'DarbaAlga'=>680.00, 'AtvalinajumaSakums'=>'2020-08-30', 'AtvalinajumaBeigas'=>'2020-09-30', 'PersKods'=>'090774-10236', 'Amats_id'=>7));
-        VeikalaDarbinieks::create(array('id'=>8, 'DarbaAlga'=>780.00, 'AtvalinajumaSakums'=>'2020-10-15', 'AtvalinajumaBeigas'=>'2020-10-30', 'PersKods'=>'041294-96587', 'Amats_id'=>8));
-        VeikalaDarbinieks::create(array('id'=>9, 'DarbaAlga'=>650.00, 'AtvalinajumaSakums'=>'2020-11-05', 'AtvalinajumaBeigas'=>'2020-11-15', 'PersKods'=>'010508-12345', 'Amats_id'=>9));
-        VeikalaDarbinieks::create(array('id'=>10, 'DarbaAlga'=>690.00, 'AtvalinajumaSakums'=>'2020-10-25', 'AtvalinajumaBeigas'=>'2020-11-15', 'PersKods'=>'010508-12346', 'Amats_id'=>10));
+        VeikalaDarbinieks::create(array('id'=>1, 'DarbaAlga'=>2020.99, 'AtvalinajumaSakums'=>'2020-08-25', 'AtvalinajumaBeigas'=>'2020-09-26', 'Persona_id'=>1, 'Amats_id'=>1));
+        VeikalaDarbinieks::create(array('id'=>2, 'DarbaAlga'=>960.00, 'AtvalinajumaSakums'=>'2020-08-25', 'AtvalinajumaBeigas'=>'2020-09-26', 'Persona_id'=>2, 'Amats_id'=>2));
+        VeikalaDarbinieks::create(array('id'=>3, 'DarbaAlga'=>870.00, 'AtvalinajumaSakums'=>'2020-08-30', 'AtvalinajumaBeigas'=>'2020-09-30', 'Persona_id'=>3, 'Amats_id'=>3));
+        VeikalaDarbinieks::create(array('id'=>4, 'DarbaAlga'=>790.00, 'AtvalinajumaSakums'=>'2020-09-05', 'AtvalinajumaBeigas'=>'2020-09-20', 'Persona_id'=>4, 'Amats_id'=>4));
+        VeikalaDarbinieks::create(array('id'=>5, 'DarbaAlga'=>750.00, 'AtvalinajumaSakums'=>'2020-09-15', 'AtvalinajumaBeigas'=>'2020-09-30', 'Persona_id'=>5, 'Amats_id'=>5));
+        VeikalaDarbinieks::create(array('id'=>6, 'DarbaAlga'=>850.00, 'AtvalinajumaSakums'=>'2020-08-10', 'AtvalinajumaBeigas'=>'2020-08-30', 'Persona_id'=>6, 'Amats_id'=>6));
+        VeikalaDarbinieks::create(array('id'=>7, 'DarbaAlga'=>680.00, 'AtvalinajumaSakums'=>'2020-08-30', 'AtvalinajumaBeigas'=>'2020-09-30', 'Persona_id'=>7, 'Amats_id'=>7));
+        VeikalaDarbinieks::create(array('id'=>8, 'DarbaAlga'=>780.00, 'AtvalinajumaSakums'=>'2020-10-15', 'AtvalinajumaBeigas'=>'2020-10-30', 'Persona_id'=>8, 'Amats_id'=>8));
+        VeikalaDarbinieks::create(array('id'=>9, 'DarbaAlga'=>650.00, 'AtvalinajumaSakums'=>'2020-11-05', 'AtvalinajumaBeigas'=>'2020-11-15', 'Persona_id'=>9, 'Amats_id'=>9));
+        VeikalaDarbinieks::create(array('id'=>10, 'DarbaAlga'=>690.00, 'AtvalinajumaSakums'=>'2020-10-25', 'AtvalinajumaBeigas'=>'2020-11-15', 'Persona_id'=>10, 'Amats_id'=>10));
 
 
         Persona::create(array('id'=>1, 'PersKods'=>'111065-11836', 'Vards'=>'Volga', 'OtraisVards'=>NULL, 'Uzvards'=>'Zebra', 'Telefons'=>25145265,'adrese_id'=>21));
@@ -127,5 +134,37 @@ class DatabaseSeeder extends Seeder
         Persona::create(array('id'=>9, 'PersKods'=>'010508-12345', 'Vards'=>'Viktors', 'OtraisVards'=>'Failis', 'Uzvards'=>'Haloka', 'Telefons'=>24510359,'adrese_id'=>29));
         Persona::create(array('id'=>10, 'PersKods'=>'010508-12346', 'Vards'=>'Lāce', 'OtraisVards'=>NULL, 'Uzvards'=>'Grobena', 'Telefons'=>24567984,'adrese_id'=>30));
 
+        
+        Adrese::create(array('id'=>1, 'Pilseta'=>'Riga','Iela'=>'Naujienes','MajasN'=>2));
+        Adrese::create(array('id'=>2, 'Pilseta'=>'Riga','Iela'=>'Volgas','MajasN'=>32));
+        Adrese::create(array('id'=>3, 'Pilseta'=>'Riga','Iela'=>'Ventas','MajasN'=>12));
+        Adrese::create(array('id'=>4, 'Pilseta'=>'Riga','Iela'=>'Saldas','MajasN'=>211));
+        Adrese::create(array('id'=>5, 'Pilseta'=>'Riga','Iela'=>'Darjas','MajasN'=>20));
+        Adrese::create(array('id'=>6, 'Pilseta'=>'Riga','Iela'=>'Miznika','MajasN'=>31));
+        Adrese::create(array('id'=>7, 'Pilseta'=>'Riga','Iela'=>'Ilvara','MajasN'=>33));
+        Adrese::create(array('id'=>8, 'Pilseta'=>'Riga','Iela'=>'18. novembra','MajasN'=>123));
+        Adrese::create(array('id'=>9, 'Pilseta'=>'Riga','Iela'=>'11. novembra','MajasN'=>100));
+        Adrese::create(array('id'=>10, 'Pilseta'=>'Riga','Iela'=>'Skaistules','MajasN'=>233));
+        Adrese::create(array('id'=>11, 'Pilseta'=>'Riga','Iela'=>'Manas','MajasN'=>72));
+        Adrese::create(array('id'=>12, 'Pilseta'=>'Riga','Iela'=>'Tavas','MajasN'=>772));
+        Adrese::create(array('id'=>13, 'Pilseta'=>'Riga','Iela'=>'Musu','MajasN'=>28));
+        Adrese::create(array('id'=>14, 'Pilseta'=>'Riga','Iela'=>'Jusu','MajasN'=>9));
+        Adrese::create(array('id'=>15, 'Pilseta'=>'Riga','Iela'=>'Vinu','MajasN'=>1));
+        Adrese::create(array('id'=>16, 'Pilseta'=>'Riga','Iela'=>'Vinas','MajasN'=>2));
+        Adrese::create(array('id'=>17, 'Pilseta'=>'Riga','Iela'=>'Sviesta','MajasN'=>3));
+        Adrese::create(array('id'=>18, 'Pilseta'=>'Riga','Iela'=>'Vegetara','MajasN'=>4));
+        Adrese::create(array('id'=>19, 'Pilseta'=>'Riga','Iela'=>'Sarkangalvites','MajasN'=>5));
+        Adrese::create(array('id'=>20, 'Pilseta'=>'Riga','Iela'=>'1. janvara','MajasN'=>26));
+        Adrese::create(array('id'=>21, 'Pilseta'=>'Riga','Iela'=>'2. janvara','MajasN'=>27));
+        Adrese::create(array('id'=>22, 'Pilseta'=>'Riga','Iela'=>'3. janvara','MajasN'=>23));
+        Adrese::create(array('id'=>23, 'Pilseta'=>'Riga','Iela'=>'Uzvaras','MajasN'=>222));
+        Adrese::create(array('id'=>24, 'Pilseta'=>'Riga','Iela'=>'Padosanas','MajasN'=>21));
+        Adrese::create(array('id'=>25, 'Pilseta'=>'Riga','Iela'=>'Izcilibas','MajasN'=>44));
+        Adrese::create(array('id'=>26, 'Pilseta'=>'Riga','Iela'=>'Teikas','MajasN'=>55));
+        Adrese::create(array('id'=>27, 'Pilseta'=>'Riga','Iela'=>'Zvirbulu','MajasN'=>26));
+        Adrese::create(array('id'=>28, 'Pilseta'=>'Riga','Iela'=>'Varnas','MajasN'=>27));
+        Adrese::create(array('id'=>29, 'Pilseta'=>'Riga','Iela'=>'Zilites','MajasN'=>7));
+        Adrese::create(array('id'=>30, 'Pilseta'=>'Riga','Iela'=>'Jevgenijas','MajasN'=>23));
+        
     }
 }

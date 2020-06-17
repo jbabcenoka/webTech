@@ -5,11 +5,9 @@
         <group>
             <file>file:/C:/wamp64/www/webTech/resources/views/order_create.blade.php</file>
             <file>file:/C:/wamp64/www/webTech/routes/web.php</file>
-            <file>file:/C:/wamp64/www/webTech/app/EsosasPreces.php</file>
             <file>file:/C:/wamp64/www/webTech/app/Http/Controllers/OrderController.php</file>
-            <file>file:/C:/wamp64/www/webTech/public/css/app.css</file>
             <file>file:/C:/wamp64/www/webTech/resources/views/EsosasPreces.blade.php</file>
-            <file>file:/C:/wamp64/www/webTech/app/ZieduGlabApstakli.php</file>
+            <file>file:/C:/wamp64/www/webTech/app/Http/Controllers/EsosasPrecesController.php</file>
         </group>
     </open-files>
 </project-private>

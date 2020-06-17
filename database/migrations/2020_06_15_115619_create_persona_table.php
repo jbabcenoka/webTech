@@ -16,7 +16,7 @@ class CreatePersonaTable extends Migration
         Schema::create('Personas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("PersKods",12)->unique();
+            $table->string("PersKods",12);
             $table->string("Vards",30);
             $table->string("OtraisVards",30)->nullable();
             $table->string("Uzvards",30);	

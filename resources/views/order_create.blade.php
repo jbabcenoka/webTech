@@ -11,30 +11,14 @@
     $(document).ready(function () {
         $("#change_me").change(function () {
             validate();
-          //  summa();
         });
     });
     
     function summa(){
-       // var start = new Date($("#rental_start").val());
-        //var end = new Date($("#rental_end").val());
-       // var days = (end.getTime()-start.getTime())/(3600000 * 24)
-        var days = $("#change_me").val();
-        //var cena = $("#price").val();
-        //var total = cena*days;
-       // total = Number.parseFloat(total).toFixed(2);
+       var days = $("#change_me").val();
        total =days*{{$cena}};
        total = Number.parseFloat(total).toFixed(2);
-        document.getElementById("total-price").innerHTML = "Total:  "+total+" €";
-    }
-   
-    function myFunction() {
-        var tmp;
-        if (confirm("Are you want to confirm your order ?") == true) {
-            tmp = "OK!";
-        } else {
-            tmp = "BAD!";
-        }
+       document.getElementById("total-price").innerHTML = "Total:  "+total+" €";
     }
 </script>
 <div class="container">
@@ -46,7 +30,7 @@
                         <h3> {{$flower->ZiedaPuskaVeids}} </h3>
                   <div>   Count in shop: {{$flower->ZieduSkaits}} </div>
                     <div id="total-price">Total: {{$cena}} €</div>
-  @switch($flower->ZiedaPuskaVeids) 
+                    @switch($flower->ZiedaPuskaVeids) 
                         @case('Frezijas') <img src="{{  url('/images/frezijas.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Astromerijas') <img src="{{  url('/images/astromerijas.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Gerbazas') <img src="{{  url('/images/gerbazas.jpg') }}"  alt="foto" cclass="photo"> @break
@@ -56,7 +40,7 @@
                         @case('Lilijas') <img src="{{  url('/images/lilija.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Nelkes') <img src="{{  url('/images/nelkes.jpg') }}"  alt="foto" class="photo"> @break
                         @case('Orhidejas') <img src="{{  url('/images/orhidejas.jpg') }}" alt="foto" class="photo"> @break
-                        @case('Peonijas') <img src="{{  url('/images/peonijas.jpg') }}" alt="foto"  class="photo" @break
+                        @case('Peonijas') <img src="{{  url('/images/peonijas.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Puskis Flora') <img src="{{  url('/images/flora.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Puskis Luiza') <img src="{{  url('/images/luiza.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Puskis Maja') <img src="{{  url('/images/maija.jpg') }}"  alt="foto" class="photo"> @break
@@ -129,10 +113,19 @@
                     
                     <div class="form-group" class="change_me">
                         {{Form::label('apartment','Apartment')}}
-                        {{Form::number('apartment','',['class'=>'form-control','id'=>'change_me','placeholder'=>'Apartment'])}}
+                        {{Form::number('apartment','',['placeholder'=>'Apartment', 'class'=>'form-control'])}}
                         @if ($errors->has('apartment'))
                         <span>
                             <strong>{{ $errors->first('apartment') }}</strong>
+                        </span>
+                        @endif 
+                    </div>
+                    <div class="form-group" class="change_me">
+                        {{Form::label('count','Count of flowers')}}
+                        {{Form::number('count','',['class'=>'form-control','id'=>'change_me','placeholder'=>'Count of flowers'])}}
+                        @if ($errors->has('apartment'))
+                        <span>
+                            <strong>{{ $errors->first('count') }}</strong>
                         </span>
                         @endif 
                     </div>
@@ -147,7 +140,11 @@
                         @endif 
                         <br>
                     </div>
-                    {{Form::submit('Submit',['class'=>'btn btn-primary'], ['skaits' => $flower->ZieduSkaits],['partijaskods' => $flower->PartijasKods] ,['ZiedaPuskaVeids' => $flower->ZiedaPuskaVeids])}}
+                    <input type="hidden" name="kods" value="{{$kods}}" />
+                    <input type="hidden" name="ziedaid" value="{{$flower->id}}" />
+                    <input type="hidden" name="veids" value="{{$flower->ZiedaPuskaVeids}}" />
+                    <input type="hidden" name="esamiba" value="{{$esamiba}}" />
+                    {{Form::submit('Submit',['class'=>'btn btn-primary','skaits' => $flower->ZieduSkaits, 'kods' => $kods, 'esamiba'=>$esamiba, 'ZiedaPuskaVeids' => $flower->ZiedaPuskaVeids])}}
                     {!!Form::close()!!}
                  </div>
              </div>

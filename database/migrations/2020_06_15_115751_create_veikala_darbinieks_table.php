@@ -19,9 +19,10 @@ class CreateVeikalaDarbinieksTable extends Migration
             $table->float('DarbaAlga');
             $table->date("AtvalinajumaSakums")->nullable();
             $table->date("AtvalinajumaBeigas")->nullable();
-            $table->string("PersKods",12)->unique();
+            $table->foreignId('Persona_id')->constrained();
+            //$table->string("PersKods",12)->unique();
             $table->foreignId('Amats_id')->constrained();
-            $table->foreign('PersKods')->references('PersKods')->on('Personas');
+            //$table->foreign('PersKods')->references('PersKods')->on('Personas');
         });
     }
 

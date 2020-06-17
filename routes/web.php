@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Auth::routes();
-
-
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Auth::routes();
@@ -28,11 +27,13 @@ Route::resource('EsosasPreces', 'EsosasPrecesController');
 
 Auth::routes();
 Route::get('/about', 'VeikalsController@index');
- 
+Route::get('/allorders/{id?}','AllordersController@index');
+Route::get('/shop-orders', 'ShopController@index');
 
 
 Route::get('/{id?}', 'OrderController@create');
-
-
-Auth::routes();
 Route::post('/show','OrderController@store');
+Route::post('/showall','ShopController@store');
+Route::post('/details/{?id}','OrderController@details');
+
+
