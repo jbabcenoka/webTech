@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         Persona::truncate();
         Adrese::truncate();
         User::truncate();
-        
-       User::create(array('id'=>1, 'name'=>'Administrator','email'=>'admin@ziedi.com','password'=>bcrypt('secret'),'role'=>true));
+        $now = new DateTime('now');
+       User::create(array('id'=>1, 'name'=>'Administrator','email'=>'admin@ziedi.com', 'password'=>bcrypt('secret'),'role'=>true));
 
        ZieduGlabApstakli::create(array('id' => 1,'ZiedaPuskaVeids' => 'Rozes','Mitrums' => 85.00,'Temperatura' => 10.00));
        ZieduGlabApstakli::create(array('id' => 2,'ZiedaPuskaVeids' => 'Tulpes','Mitrums' => 75.00,'Temperatura' => 15.00));

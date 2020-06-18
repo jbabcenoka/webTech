@@ -30,12 +30,21 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                            <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                           <li><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+                           <li><a class="nav-link" href="{{ url('/gallery') }}">Flower gallery</a></li>
+                           @if (Auth::check()) 
+                            @if(!is_null(Auth::user()->email_verified_at))
                            @if (Auth::check()) 
                            <li><a class="nav-link" href="{{ url('allorders/'.Auth::user()->id) }}">Orders</a></li>
                            @endif
-                           <li><a class="nav-link" href="{{ url('/about') }}">About</a></li>
+                           
+                           
                            @if (Auth::check() && Auth::user()->role ==true) 
                            <li><a class="nav-link" href="{{ url('shop-orders/') }}">Administrator tools</a></li>
+                           <li><a class="nav-link" href="{{ url('users-orders/') }}">User`s orders</a></li>
+                           @endif
+                           
+                           @endif
                            @endif
 
                     </ul>

@@ -17,11 +17,11 @@ class CreatePardotieUnBojatieTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("PartijasKods",20); 
-            $table->string("PersKods",12)->nullable();
             $table->integer("Skaits");
             $table->date("Datums");
             $table->string("ZiedaPuskaVeids",20);
             $table->boolean("BooleanPard");
+            $table->boolean("Fulfilled")->default(false);
             $table->foreignId('users_id')->constrained();
             $table->foreignId('persona_id')->constrained();
             $table->foreign('PartijasKods')->references('PartijasKods')->on('Esosas_preces');

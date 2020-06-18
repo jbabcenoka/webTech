@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\ZieduGlabApstakli;
 use App\EsosasPreces;
 use Illuminate\Support\Facades\Validator;
+use App\PardotieUnBojatie;
+use App\Persona;
+use App\Piegadatajs;
+use App\Adrese;
 class ShopController extends Controller
 {
     /**
@@ -63,9 +67,14 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $preces= PardotieUnBojatie::orderBy('users_id')->get();
+        $cena = Piegadatajs::orderBy('id')->get();
+        $adrese = Adrese::orderBy('id')->get();
+        $persona = Persona::orderBy('id')->get();
+        
+        return view('users-orders',array('data'=>$preces, 'persona'=>$persona, 'adrese'=>$adrese, 'cena'=>$cena));
     }
 
     /**
@@ -86,9 +95,14 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(request $request)
     {
-        //
+        $order= PardotieUnBojatie::find($request->id);
+        if($request->fulfilled ==1){
+        $order->Fulfilled=true;
+        } else $order->Fulfilled=false;
+        $order->save();
+        return redirect('/users-orders');
     }
 
     /**

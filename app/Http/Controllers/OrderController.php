@@ -115,7 +115,6 @@ class OrderController extends Controller
        
         //pardotie
         $pardotie = new PardotieUnBojatie();
-        //partijaskods 
         $pardotie->Skaits = $request->count;
         $pardotie->persona_id=$lastperson;
         $pardotie->Datums = now();

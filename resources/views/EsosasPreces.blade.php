@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 <div class="container">
     <div class="row">
         <img src="{{  url('/images/wallpaper.jpg') }}" width="100%" height="300px" alt="foto" >
@@ -19,6 +20,53 @@
                                    
                                 </div>
                         </div>
+                        <br>
+                        <br>
+                        @if(Auth::user())
+                        <div class="card">
+                            <h2 class="list-group-item list-group-item-primary">Top for you</h2>
+                            @isset($top)
+                            
+                            @foreach($top as $t)
+                            <h3><strong><i>{{$t->ZiedaPuskaVeids}}</i></strong></h3>
+                            <h4><i>Nopirkto ziedu skaits: {{$t->Skaits}}</i></h4>
+                            
+                                @switch($t->ZiedaPuskaVeids) 
+                                    @case('Frezijas') <img src="{{  url('/images/frezijas.jpg') }}" alt="foto" class="third" > @break
+                                    @case('Astromerijas') <img src="{{  url('/images/astromerijas.jpg') }}" alt="foto" class="third"> @break
+                                    @case('Gerbazas') <img src="{{  url('/images/gerbazas.jpg') }}"  alt="foto" class="third" > @break
+                                    @case('Hortenzijas') <img src="{{  url('/images/hortenzijas.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Krizantemas') <img src="{{  url('/images/hrizantemas.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Lavanda') <img src="{{  url('/images/lavandas.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Lilijas') <img src="{{  url('/images/lilija.jpg') }}" alt="foto" class="third"> @break
+                                    @case('Nelkes') <img src="{{  url('/images/nelkes.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Orhidejas') <img src="{{  url('/images/orhidejas.jpg') }}" alt="foto" class="third" > @break
+                                    @case('Peonijas') <img src="{{  url('/images/peonijas.jpg') }}" alt="foto" class="third"> @break
+                                    @case('Puskis Flora') <img src="{{  url('/images/flora.jpg') }}" alt="foto" class="third"> @break
+                                    @case('Puskis Luiza') <img src="{{  url('/images/luiza.jpg') }}" alt="foto" class="third"> @break
+                                    @case('Puskis Maja') <img src="{{  url('/images/maija.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Puskis Milestiba') <img src="{{  url('/images/milestiba.jpg') }}" alt="foto" class="third" > @break
+                                    @case('Puskis Pavasara') <img src="{{  url('/images/pavasara.jpg') }}"  alt="foto" class="third"  > @break
+                                    @case('Puskis Vasara') <img src="{{  url('/images/vasara.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Puskis Vesture') <img src="{{  url('/images/vesture.jpg') }}"  alt="foto" class="third" > @break
+                                    @case('Puskis Ziema') <img src="{{  url('/images/ziema.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Rozes') <img src="{{  url('/images/rozes.jpg') }}"  alt="foto" class="third"> @break
+                                    @case('Tulpes') <img src="{{  url('/images/tulpes.jpg') }}" alt="foto" class="third"> @break
+                                @endswitch
+                          
+                            @foreach($flowers as $f)
+                            @if($f->ZieduSkaits!=0)
+                                @if($f->ZiedaPuskaVeids == $t->ZiedaPuskaVeids)
+                                <a type="button" id="top"  href="{{ action('OrderController@create', $f->id)}}"> Buy more this </a>
+                                @endif 
+                            @endif
+                            @endforeach
+                                
+                            @endforeach
+                            
+                            @endisset
+                        </div>
+                        @endif
                     </div>
                     <div class="col-sm-8">
                         <div class="card">
@@ -63,7 +111,12 @@
                                                     @endforeach
                                                     
                                                     <br>
-                                                    <a type="button" id='create_order'  href="{{ action('OrderController@create', $flower->id)}}"> Buy </a>
+                                                    @if($flower->ZieduSkaits!=0)
+                                                        <a type="button" id='create_order'  href="{{ action('OrderController@create', $flower->id)}}"> Buy </a>
+                                                    @elseif ($flower->ZieduSkaits==0)
+                                                         <a type="button"  style="background-color: #e7e7e7; color: black;border: none;padding: 16px 32px;text-decoration: none;margin: 4px 2px;cursor: pointer;">Buy </a>
+                                                    
+                                                    @endif
                                                 </div>
                                             </div>
                              @endforeach       
