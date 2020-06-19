@@ -34,13 +34,18 @@ Route::patch('/gallery/images', 'GalleryController@store');
 Route::get('/allorders/{id?}','AllordersController@index');
 Route::get('/shop-orders', 'ShopController@index');
 Route::get('/users-orders', 'ShopController@show');
+Route::get('/emploqees', 'ShopController@showEmploqees');
 Route::patch('/users-orders-update', 'ShopController@update');
 
+
 Route::get('/{id?}', 'OrderController@create');
+Route::get('/emploqee/{id?}', 'VeikalsController@destroy');
 Route::post('/show','OrderController@store');
+Route::post('/newEmploqee','VeikalsController@store');
+
+
 Route::post('/showall','ShopController@store');
 Route::post('/details/{?id}','OrderController@details');
-
 
 
 Auth::routes();

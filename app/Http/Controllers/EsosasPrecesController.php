@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\EsosasPreces;
 use App\ZieduGlabApstakli;
 use App\PardotieUnBojatie;
+use App\Piegadatajs;
 use Illuminate\Http\Request;
 
 class EsosasPrecesController extends Controller
@@ -18,6 +19,7 @@ class EsosasPrecesController extends Controller
     public function index()
     { 
         $glab_apst= ZieduGlabApstakli::orderBy('ZiedaPuskaVeids')->get();
+        $cena = Piegadatajs::orderBy('ZiedaPuskaVeids')->get();
         $flowers= EsosasPreces::orderBy('ZiedaPuskaVeids')->get();
         $pard = PardotieUnBojatie::orderBy('Skaits')->get();
         $user = Auth::user();
@@ -35,9 +37,8 @@ class EsosasPrecesController extends Controller
         if($flag2==1) $top= PardotieUnBojatie::where('id', $maxValueId->id)->get();
         }
         
-        return view('EsosasPreces', array('flowers'=>$flowers, 'glab_apst'=>$glab_apst, 'top'=>$top));
+        return view('EsosasPreces', array('flowers'=>$flowers, 'glab_apst'=>$glab_apst, 'top'=>$top, 'cena'=>$cena));
     }
-
 
     public function create()
     {

@@ -23,8 +23,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                
-               
+
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -32,18 +32,19 @@
                            <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                            <li><a class="nav-link" href="{{ url('/about') }}">About</a></li>
                            <li><a class="nav-link" href="{{ url('/gallery') }}">Flower gallery</a></li>
-                           @if (Auth::check()) 
+                           @if (Auth::check())
                             @if(!is_null(Auth::user()->email_verified_at))
-                           @if (Auth::check()) 
+                           @if (Auth::check())
                            <li><a class="nav-link" href="{{ url('allorders/'.Auth::user()->id) }}">Orders</a></li>
                            @endif
-                           
-                           
-                           @if (Auth::check() && Auth::user()->role ==true) 
-                           <li><a class="nav-link" href="{{ url('shop-orders/') }}">Administrator tools</a></li>
-                           <li><a class="nav-link" href="{{ url('users-orders/') }}">User`s orders</a></li>
+
+
+                           @if (Auth::check() && Auth::user()->role ==true)
+                               <li><a class="nav-link" href="{{ url('shop-orders/') }}">Administrator tools</a></li>
+                               <li><a class="nav-link" href="{{ url('users-orders/') }}">User`s orders</a></li>
+                               <li><a class="nav-link" href="{{ url('emploqees/') }}">Employees</a></li>
                            @endif
-                           
+
                            @endif
                            @endif
 

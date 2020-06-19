@@ -16,7 +16,8 @@
                                   
                                     <label for="search" id="label-for-search">Flower:</label>      
                                     <input type="search" id="search" placeholder="Search flowers..." oninput="showproducts({{$flowers}})" style="width:75%" >
-                                </div>
+                                    <label for="sort" id="sort">Sort by price: </label> <button onclick="descPrice(})" type="button">Desc</button> 
+                                   </div>
                                    
                                 </div>
                         </div>
@@ -109,7 +110,13 @@
                                                            <h5>Temperatura: {{$glab->Mitrums}}</h5>
                                                       @endif
                                                     @endforeach
-                                                    
+                                                    <h5>Cena: 
+                                                        @foreach ($cena as $c)  
+                                                     @if ($c->ZiedaPuskaVeids == $flower->ZiedaPuskaVeids)
+                                                           {{$c->CenaParVienu}}
+                                                      @endif
+                                                    @endforeach
+                                                        EUR par vienu</h5>  
                                                     <br>
                                                     @if($flower->ZieduSkaits!=0)
                                                         <a type="button" id='create_order'  href="{{ action('OrderController@create', $flower->id)}}"> Buy </a>
@@ -146,8 +153,17 @@ function showproducts(flowers){
             }
         }
     }
+}
+function descPrice(flowers)
+{   
+   let result = flowers.map(({ ZiedaPuskaVeids }) => ZiedaPuskaVeids)
+   for(let i=0; i<20; i++){
+        var container = document.getElementById(result[i]); 
+        if(container.hidden==false){
+             container.hidden=true;
+        }
+        
+    }
 
-
-  
 }
 </script>

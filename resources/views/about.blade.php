@@ -23,11 +23,7 @@
                                    possible to make you come back to us again to order sending
                                    flowers into Riga or anywhere in Latvia.</p>
                                    <h4>Delivery</h4>
-                                   <p>1. Delivery with Omniva Postal packs service EUR 2.49!<br>
-                                       2. Delivery using Euronics courier across Riga only. * Delivery costs EUR 15.00.<br>
-                                       3. Delivery using DPD service - your order will be delivered to the specified address 
-                                       in 1 - 3 working days. The courier will deliver the order to your front door. <br>
-                                       
+                                   <p>1. Delivery using courier across Riga  costs EUR 0.00.<br>
                                    </p>
                                    <p>As regards the same day delivery, please contact our client support, since it depends upon the courier workload as well as product availability in stores</p>
                                    Do not hesitate to call or e-mail us!
