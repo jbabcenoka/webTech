@@ -8,7 +8,7 @@
                     
                     <div class="col-sm-8">
                         <div class="card">
-                             <h2 class="list-group-item list-group-item-primary">Your orders</h2>
+                             <h2 class="list-group-item list-group-item-primary">{{ __('messages.your_orders') }}</h2>
                              @foreach ($data as $d) 
                              @if($d->Fulfilled == 0)
                                             <div class="list-group-item" id="{{$d->ZiedaPuskaVeids}}">
@@ -38,14 +38,35 @@
                                                 </div>
                                                 <div class='second' >
                                                      <h2>
-                                                        {{$d->ZiedaPuskaVeids }}
+                                                         @switch($d->ZiedaPuskaVeids) 
+                                                        @case('Frezijas') {{ __('messages.Frezijas') }} @break
+                                                        @case('Astromerijas') {{ __('messages.Astromerijas') }}  @break
+                                                        @case('Gerbazas'){{ __('messages.Gerbazas') }} @break
+                                                        @case('Hortenzijas') {{ __('messages.Hortenzijas') }} @break
+                                                        @case('Krizantemas') {{ __('messages.Krizantemas') }}  @break
+                                                        @case('Lavanda') {{ __('messages.Lavanda') }}  @break
+                                                        @case('Lilijas'){{ __('messages.Lilijas') }} @break
+                                                        @case('Nelkes') {{ __('messages.Nelkes') }} @break
+                                                        @case('Orhidejas'){{ __('messages.Orhidejas') }} @break
+                                                        @case('Peonijas'){{ __('messages.Peonijas') }} @break
+                                                        @case('Puskis Flora'){{ __('messages.Puskis_Flora') }} @break
+                                                        @case('Puskis Luiza') {{ __('Puskis_Luiza') }}  @break
+                                                        @case('Puskis Maja'){{ __('messages.Puskis_Maja') }}  @break
+                                                        @case('Puskis Milestiba') {{ __('messages.Puskis_Milestiba') }}  @break
+                                                        @case('Puskis Pavasara'){{ __('messages.Puskis_Pavasara') }} @break
+                                                        @case('Puskis Vasara'){{ __('messages.Puskis_Vasara') }} @break
+                                                        @case('Puskis Vesture') {{ __('messages.Puskis_Vesture') }}  @break
+                                                        @case('Puskis Ziema') {{ __('messages.Puskis_Ziema') }}  @break
+                                                        @case('Rozes'){{ __('messages.Rozes') }} @break
+                                                        @case('Tulpes') {{ __('messages.Tulpes') }} @break
+                                                    @endswitch
                                                     </h2>
                                                     <br>
-                                                    <h5>Nopirkto ziedu skaits: {{$d->Skaits}}</h5>  
+                                                    <h5>{{ __('messages.number_of_sold') }}: {{$d->Skaits}}</h5>  
                                                     <br>
-                                                    <h5>Pirkšanas datums: {{$d->Datums}}</h5>
+                                                    <h5>{{ __('messages.date_buy') }}: {{$d->Datums}}</h5>
                                                     <br>
-                                                    <h5>Kopēja cena: {{($cena[$i] * $d->Skaits)}} EUR</h5>
+                                                    <h5>{{ __('messages.price') }}: {{($cena[$i] * $d->Skaits)}} EUR</h5>
                                                     <p hidden='true'>{{$i++}}</p>
                                                     <br>
                                                     
@@ -61,7 +82,7 @@
                     </div>
             <div class="col-sm">
                         <div class="card">
-                              <h2 class="list-group-item list-group-item-primary">Fulfilled orders</h2>
+                              <h2 class="list-group-item list-group-item-primary">{{ __('messages.fulfilled_orders') }}</h2>
                                
                                    @foreach ($data as $d) 
                              @if($d->Fulfilled == 1)
@@ -92,19 +113,37 @@
                                                 </div>
                                                 <div class='second' >
                                                      <h2>
-                                                        {{$d->ZiedaPuskaVeids }}
+                                                        @switch($d->ZiedaPuskaVeids) 
+                                                        @case('Frezijas') {{ __('messages.Frezijas') }} @break
+                                                        @case('Astromerijas') {{ __('messages.Astromerijas') }}  @break
+                                                        @case('Gerbazas'){{ __('messages.Gerbazas') }} @break
+                                                        @case('Hortenzijas') {{ __('messages.Hortenzijas') }} @break
+                                                        @case('Krizantemas') {{ __('messages.Krizantemas') }}  @break
+                                                        @case('Lavanda') {{ __('messages.Lavanda') }}  @break
+                                                        @case('Lilijas'){{ __('messages.Lilijas') }} @break
+                                                        @case('Nelkes') {{ __('messages.Nelkes') }} @break
+                                                        @case('Orhidejas'){{ __('messages.Orhidejas') }} @break
+                                                        @case('Peonijas'){{ __('messages.Peonijas') }} @break
+                                                        @case('Puskis Flora'){{ __('messages.Puskis_Flora') }} @break
+                                                        @case('Puskis Luiza') {{ __('Puskis_Luiza') }}  @break
+                                                        @case('Puskis Maja'){{ __('messages.Puskis_Maja') }}  @break
+                                                        @case('Puskis Milestiba') {{ __('messages.Puskis_Milestiba') }}  @break
+                                                        @case('Puskis Pavasara'){{ __('messages.Puskis_Pavasara') }} @break
+                                                        @case('Puskis Vasara'){{ __('messages.Puskis_Vasara') }} @break
+                                                        @case('Puskis Vesture') {{ __('messages.Puskis_Vesture') }}  @break
+                                                        @case('Puskis Ziema') {{ __('messages.Puskis_Ziema') }}  @break
+                                                        @case('Rozes'){{ __('messages.Rozes') }} @break
+                                                        @case('Tulpes') {{ __('messages.Tulpes') }} @break
+                                                    @endswitch
                                                     </h2>
                                                     <br>
-                                                    <h5>Nopirkto ziedu skaits: {{$d->Skaits}}</h5>  
+                                                    <h5>{{ __('messages.number_of_sold') }}: {{$d->Skaits}}</h5>  
                                                     <br>
-                                                    <h5>Pirkšanas datums: {{$d->Datums}}</h5>
+                                                    <h5>{{ __('messages.date_buy') }}: {{$d->Datums}}</h5>
                                                     <br>
-                                                    <h5>Kopēja cena: {{($cena[$i] * $d->Skaits)}} EUR</h5>
+                                                    <h5>{{ __('messages.price') }}: {{($cena[$i] * $d->Skaits)}} EUR</h5>
                                                     <p hidden='true'>{{$i++}}</p>
                                                     <br>
-                                                   
-                                                   
-                                                    
                                                     <br>
                                                    </div>
                                             </div>

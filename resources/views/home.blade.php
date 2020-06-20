@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Welcome to flower shop!</div>
+                <div class="card-header">{{ __('messages.Welcome_to_flower_shop') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    {{ __('messages.You_are_logged_in') }} 
                 </div>
             </div>
         </div>

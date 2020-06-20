@@ -7,8 +7,10 @@ use App\ZieduGlabApstakli;
 use App\EsosasPreces;
 use Illuminate\Support\Facades\Validator;
 use App\PardotieUnBojatie;
+use App\VeikalaDarbinieks;
 use App\Persona;
 use App\Piegadatajs;
+use App\Amats;
 use App\Adrese;
 class ShopController extends Controller
 {
@@ -61,6 +63,7 @@ class ShopController extends Controller
         return redirect('/shop-orders');
     }
 
+    
     /**
      * Display the specified resource.
      *
@@ -76,7 +79,17 @@ class ShopController extends Controller
         
         return view('users-orders',array('data'=>$preces, 'persona'=>$persona, 'adrese'=>$adrese, 'cena'=>$cena));
     }
-
+    public function showEmploqees()
+    {
+        $darb= VeikalaDarbinieks::orderBy('id')->get();
+        $persona = Persona::orderBy('id')->get();
+        $adrese = Adrese::orderBy('id')->get();
+        $amats = Amats::orderBy('id')->get();
+        $amats_nos = Amats::pluck('AmataNosaukums');
+        return view('emploqees',array('data'=>$darb, 'persona'=>$persona, 'adrese'=>$adrese, 'amats'=>$amats, 'amats_nos'=>$amats_nos ));
+    }
+    
+    
     /**
      * Show the form for editing the specified resource.
      *
