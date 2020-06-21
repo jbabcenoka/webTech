@@ -25,11 +25,35 @@
     <div class="row">
             <div class="col-sm">
                 <div class="card">
-                    <div class="list-group-item list-group-item-primary"><h4>Order information</h4></div>
+                    <div class="list-group-item list-group-item-primary"><h4> {{ __('messages.order_info') }}</h4></div>
                     
-                        <h3> {{$flower->ZiedaPuskaVeids}} </h3>
-                  <div>   Count in shop: {{$flower->ZieduSkaits}} </div>
-                    <div id="total-price">Total: {{$cena}} €</div>
+                        <h3> 
+                            @switch($flower->ZiedaPuskaVeids) 
+                                                        @case('Frezijas') {{ __('messages.Frezijas') }} @break
+                                                        @case('Astromerijas') {{ __('messages.Astromerijas') }}  @break
+                                                        @case('Gerbazas'){{ __('messages.Gerbazas') }} @break
+                                                        @case('Hortenzijas') {{ __('messages.Hortenzijas') }} @break
+                                                        @case('Krizantemas') {{ __('messages.Krizantemas') }}  @break
+                                                        @case('Lavanda') {{ __('messages.Lavanda') }}  @break
+                                                        @case('Lilijas'){{ __('messages.Lilijas') }} @break
+                                                        @case('Nelkes') {{ __('messages.Nelkes') }} @break
+                                                        @case('Orhidejas'){{ __('messages.Orhidejas') }} @break
+                                                        @case('Peonijas'){{ __('messages.Peonijas') }} @break
+                                                        @case('Puskis Flora'){{ __('messages.Puskis_Flora') }} @break
+                                                        @case('Puskis Luiza') {{ __('Puskis_Luiza') }}  @break
+                                                        @case('Puskis Maja'){{ __('messages.Puskis_Maja') }}  @break
+                                                        @case('Puskis Milestiba') {{ __('messages.Puskis_Milestiba') }}  @break
+                                                        @case('Puskis Pavasara'){{ __('messages.Puskis_Pavasara') }} @break
+                                                        @case('Puskis Vasara'){{ __('messages.Puskis_Vasara') }} @break
+                                                        @case('Puskis Vesture') {{ __('messages.Puskis_Vesture') }}  @break
+                                                        @case('Puskis Ziema') {{ __('messages.Puskis_Ziema') }}  @break
+                                                        @case('Rozes'){{ __('messages.Rozes') }} @break
+                                                        @case('Tulpes') {{ __('messages.Tulpes') }} @break
+                                @endswitch
+                        
+                        </h3>
+                  <div>   {{ __('messages.count_of_flowers') }} : {{$flower->ZieduSkaits}} </div>
+                    <div id="total-price">{{ __('messages.Total') }} : {{$cena}} €</div>
                     @switch($flower->ZiedaPuskaVeids) 
                         @case('Frezijas') <img src="{{  url('/images/frezijas.jpg') }}" alt="foto"  class="photo"> @break
                         @case('Astromerijas') <img src="{{  url('/images/astromerijas.jpg') }}" alt="foto"  class="photo"> @break
@@ -59,11 +83,11 @@
          <div class="col-sm-8">
              
              <div class="card">
-                 <div class="list-group-item list-group-item-primary"><h4>Order placing</h4></div>
+                 <div class="list-group-item list-group-item-primary"><h4>{{ __('messages.Order_placing') }}</h4></div>
                  <div class="list-group-item"class="dates" >
                 {!! Form::open(array('action'=>'OrderController@store')) !!} 
                     <div class="form-group">
-                        {{Form::label('name','Name')}}
+                        {{Form::label('name',__('messages.Name'))}}
                         {{Form::text('name','',['class'=>'form-control','placeholder'=>'Name'])}}
                         @if ($errors->has('name'))
                         <span >
@@ -72,8 +96,8 @@
                         @endif 
                     </div>
                     <div class="form-group">
-                        {{Form::label('surname','Surname')}}
-                        {{Form::text('surname','',['class'=>'form-control','placeholder'=>'Surname'])}}
+                        {{Form::label('surname',__('messages.Surname'))}}
+                        {{Form::text('surname','',['class'=>'form-control','placeholder'=>__('messages.Surname')])}}
                         @if ($errors->has('surname'))
                         <span >
                             <strong>{{ $errors->first('surname') }}</strong>
@@ -81,20 +105,20 @@
                         @endif 
                     </div>
                      <div class="form-group">
-                        {{Form::label('perskods','Person code')}}
-                        {{Form::text('perskods','',['class'=>'form-control','placeholder'=>'Person code'])}}
+                        {{Form::label('perskods',__('messages.Person_code'))}}
+                        {{Form::text('perskods','',['class'=>'form-control','placeholder'=>__('messages.Person_code')])}}
                         @if ($errors->has('perskods'))
                         <span >
                             <strong>{{ $errors->first('perskods') }}</strong>
                         </span>
                         @endif 
                     </div>
-                    <h4> Your address </h4>
+                    <h4> {{ __('messages.Address') }} </h4>
                 
                     <div class="form-group">
                         
-                        {{Form::label('city','City')}}
-                        {{Form::text('city','',['class'=>'form-control','placeholder'=>'City'])}}
+                        {{Form::label('city',__('messages.City'))}}
+                        {{Form::text('city','',['class'=>'form-control','placeholder'=>__('messages.City')])}}
                         @if ($errors->has('city'))
                         <span>
                             <strong>{{ $errors->first('city') }}</strong>
@@ -102,8 +126,8 @@
                         @endif 
                     </div>
                     <div class="form-group">
-                        {{Form::label('street','Street')}}
-                        {{Form::text('street','',['class'=>'form-control','placeholder'=>'Street'])}}
+                        {{Form::label('street',__('messages.Street'))}}
+                        {{Form::text('street','',['class'=>'form-control','placeholder'=>__('messages.Street')])}}
                         @if ($errors->has('street'))
                         <span>
                             <strong>{{ $errors->first('street') }}</strong>
@@ -112,8 +136,8 @@
                     </div>
                     
                     <div class="form-group" class="change_me">
-                        {{Form::label('apartment','Apartment')}}
-                        {{Form::number('apartment','',['placeholder'=>'Apartment', 'class'=>'form-control'])}}
+                        {{Form::label('apartment',__('messages.Apartment'))}}
+                        {{Form::number('apartment','',['placeholder'=>__('messages.Apartment'), 'class'=>'form-control'])}}
                         @if ($errors->has('apartment'))
                         <span>
                             <strong>{{ $errors->first('apartment') }}</strong>
@@ -121,8 +145,8 @@
                         @endif 
                     </div>
                     <div class="form-group" class="change_me">
-                        {{Form::label('count','Count of flowers')}}
-                        {{Form::number('count','',['class'=>'form-control','id'=>'change_me','placeholder'=>'Count of flowers'])}}
+                        {{Form::label('count',__('messages.count_of_flowers'))}}
+                        {{Form::number('count','',['class'=>'form-control','id'=>'change_me','placeholder'=>__('messages.count_of_flowers')])}}
                         @if ($errors->has('apartment'))
                         <span>
                             <strong>{{ $errors->first('count') }}</strong>
@@ -131,8 +155,8 @@
                     </div>
                     <div class="form-group">
                          
-                        {{Form::label('phone','Telephone number')}}
-                         (+371) {{Form::text('phone','',['class'=>'form-control','placeholder'=>'Telephone number'])}}
+                        {{Form::label('phone',__('messages.Phone'))}}
+                         (+371) {{Form::text('phone','',['class'=>'form-control','placeholder'=>__('messages.Phone')])}}
                          @if ($errors->has('phone'))
                         <span>
                             <strong>{{ $errors->first('phone') }}</strong>
@@ -144,7 +168,7 @@
                     <input type="hidden" name="ziedaid" value="{{$flower->id}}" />
                     <input type="hidden" name="veids" value="{{$flower->ZiedaPuskaVeids}}" />
                     <input type="hidden" name="esamiba" value="{{$esamiba}}" />
-                    {{Form::submit('Submit',['class'=>'btn btn-primary','skaits' => $flower->ZieduSkaits, 'kods' => $kods, 'esamiba'=>$esamiba, 'ZiedaPuskaVeids' => $flower->ZiedaPuskaVeids])}}
+                    {{Form::submit(__('messages.Submit'),['class'=>'btn btn-primary','skaits' => $flower->ZieduSkaits, 'kods' => $kods, 'esamiba'=>$esamiba, 'ZiedaPuskaVeids' => $flower->ZiedaPuskaVeids])}}
                     {!!Form::close()!!}
                  </div>
              </div>

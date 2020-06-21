@@ -9,8 +9,9 @@
         <div class="row">
                     <div class="col-sm">
                         <div class="card">
-                              <h2 class="list-group-item list-group-item-primary">About</h2>
+                              <h2 class="list-group-item list-group-item-primary">{{ __('messages.about') }}</h2>
                                <div class="card-body">
+<<<<<<< HEAD
                                    <h4>  Send flowers to Riga and Latvia – are very easy!</h4>
                                    <p>We have established the most convenient online floral 
                                    shop with delivery in Riga. We know what others offer send 
@@ -24,15 +25,19 @@
                                    flowers into Riga or anywhere in Latvia.</p>
                                    <h4>Delivery</h4>
                                    <p>1. Delivery using courier across Riga  costs EUR 0.00.<br>
+=======
+                                   <h4>  {{ __('messages.Send_flowers') }}</h4>
+                                   <p> {{  __('messages.About_text') }}</p>
+                                   <h4>{{ __('messages.Delivery') }}</h4>
+                                   <p>{{ __('messages.Delivery_one') }}<br>
+>>>>>>> 63a5ddf4b6fea96163ac559c792098fc8dc68b03
                                    </p>
-                                   <p>As regards the same day delivery, please contact our client support, since it depends upon the courier workload as well as product availability in stores</p>
-                                   Do not hesitate to call or e-mail us!
+                                   {{ __('messages.Hesitate') }}
                                    <br>
                                    <br>
-                                   
-                                   Address:  Brīvības iela 62, Vidzemes priekšpilsēta, Rīga, LV-1012 <br>
-                                   E-mail: flowerRiga@gmail.com <br>
-                                   Phone number: +371 28861482
+                                    {{ __('messages.Address') }}:  Brīvības iela 62, Vidzemes priekšpilsēta, Rīga, LV-1012 <br>
+                                    {{ __('messages.email') }}: flowerRiga@gmail.com <br>
+                                    {{ __('messages.Phone') }}: +371 28861482
                                 </div>
                         </div>
                     </div>

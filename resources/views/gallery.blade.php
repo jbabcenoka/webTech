@@ -17,17 +17,17 @@
             <form action="{{"/gallery/images"}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{ method_field('PATCH') }}
-            <label><i>New gallery image</i></label>
+            <label><i>{{ __('messages.New_galary_image') }}</i></label>
             <div class="input-group">
                 <div clas="custom-file">
                     <input type="file" name="image" class="custom-file-input">
-                    <label class="custom-file-label">Choose file</label>
+                    <label class="custom-file-label">{{ __('messages.Choose_file') }}</label>
                     
                 </div>
                 
             </div>
             <br>
-            <button type="submit" name="submit" class="btn btn-primary btn-lg">Save</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-lg">{{ __('messages.Save') }}</button>
             
             </form>
         </div>

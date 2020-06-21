@@ -29,6 +29,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+<<<<<<< HEAD
                            <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                            <li><a class="nav-link" href="{{ url('/about') }}">About</a></li>
                            <li><a class="nav-link" href="{{ url('/gallery') }}">Flower gallery</a></li>
@@ -43,6 +44,22 @@
                                <li><a class="nav-link" href="{{ url('shop-orders/') }}">Administrator tools</a></li>
                                <li><a class="nav-link" href="{{ url('users-orders/') }}">User`s orders</a></li>
                                <li><a class="nav-link" href="{{ url('emploqees/') }}">Employees</a></li>
+=======
+                           <li><a class="nav-link" href="{{ url('/') }}">{{ __('messages.home') }} </a></li>
+                           <li><a class="nav-link" href="{{ url('/about') }}">{{ __('messages.about') }}</a></li>
+                           <li><a class="nav-link" href="{{ url('/gallery') }}">{{ __('messages.flower_galery') }}</a></li>
+                           @if (Auth::check()) 
+                            @if(!is_null(Auth::user()->email_verified_at))
+                           @if (Auth::check()) 
+                           <li><a class="nav-link" href="{{ url('allorders/'.Auth::user()->id) }}">{{ __('messages.Orders') }}</a></li>
+                           @endif
+                           
+                           
+                           @if (Auth::check() && Auth::user()->role ==true) 
+                           <li><a class="nav-link" href="{{ url('shop-orders/') }}">{{ __('messages.Administrator_tools') }}</a></li>
+                           <li><a class="nav-link" href="{{ url('users-orders/') }}">{{ __('messages.users_orders') }}</a></li>
+                           <li><a class="nav-link" href="{{ url('emploqees/') }}">{{ __('messages.Emploqees') }}</a></li>
+>>>>>>> 63a5ddf4b6fea96163ac559c792098fc8dc68b03
                            @endif
 
                            @endif
@@ -52,16 +69,17 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li><a class="nav-link">LV</a></li>
-                         <li><a class="nav-link">ENG</a></li>
+                        <li><a class="nav-link" href="{{ url('lang/'.'lv') }}">LV</a></li>
+                         <li><a class="nav-link" href="{{ url('lang/'.'en') }}">ENG</a></li>
+                         <li><a class="nav-link" href="{{ url('lang/'.'ru') }}">RU</a></li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                                 </li>
                             @endif
                         @else

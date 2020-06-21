@@ -108,10 +108,9 @@ class OrderController extends Controller
             $persona->Uzvards=$surname;
             $persona->Telefons=$phone;
             $persona->adrese_id=$lastAdress;
-            $lastperson = Persona::latest()->first()->id;
             $persona->save();
         }
-        
+        $lastperson = Persona::latest()->first()->id;
        
         //pardotie
         $pardotie = new PardotieUnBojatie();

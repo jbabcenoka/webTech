@@ -27,6 +27,7 @@ class AllordersController extends Controller
                 }
 
                 return view('orders',['data'=>$data],['cena'=>$cena]);
+                
             } else{
                 return view('orders',['data'=>$data]);
             }

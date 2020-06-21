@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/',function(){
-    return view('welcome');
-});
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->middleware('verified');
 Route::get('users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
@@ -38,12 +34,21 @@ Route::get('/emploqees', 'ShopController@showEmploqees');
 Route::patch('/users-orders-update', 'ShopController@update');
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 63a5ddf4b6fea96163ac559c792098fc8dc68b03
 Route::get('/{id?}', 'OrderController@create');
 Route::get('/emploqee/{id?}', 'VeikalsController@destroy');
 Route::post('/show','OrderController@store');
 Route::post('/newEmploqee','VeikalsController@store');
 
+<<<<<<< HEAD
 
+=======
+Route::get('lang/{locale}','LanguageController');
+>>>>>>> 63a5ddf4b6fea96163ac559c792098fc8dc68b03
 Route::post('/showall','ShopController@store');
 Route::post('/details/{?id}','OrderController@details');
 

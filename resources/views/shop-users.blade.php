@@ -8,7 +8,7 @@
                     
                     <div class="col-sm-8">
                         <div class="card">
-                            <h2 class="list-group-item list-group-item-primary">All count of orders</h2>
+                            <h2 class="list-group-item list-group-item-primary"> {{ __('messages.all_count_of_flowers') }}</h2>
                              @foreach ($flowers as $d) 
                                             <div class="list-group-item" id="{{$d->ZiedaPuskaVeids}}">
                                                 <div class='first'>
@@ -37,19 +37,40 @@
                                                 </div>
                                                 <div class='second' >
                                                      <h2>
-                                                        {{$d->ZiedaPuskaVeids }}
+                                                         @switch($d->ZiedaPuskaVeids) 
+                                                        @case('Frezijas') {{ __('messages.Frezijas') }} @break
+                                                        @case('Astromerijas') {{ __('messages.Astromerijas') }}  @break
+                                                        @case('Gerbazas'){{ __('messages.Gerbazas') }} @break
+                                                        @case('Hortenzijas') {{ __('messages.Hortenzijas') }} @break
+                                                        @case('Krizantemas') {{ __('messages.Krizantemas') }}  @break
+                                                        @case('Lavanda') {{ __('messages.Lavanda') }}  @break
+                                                        @case('Lilijas'){{ __('messages.Lilijas') }} @break
+                                                        @case('Nelkes') {{ __('messages.Nelkes') }} @break
+                                                        @case('Orhidejas'){{ __('messages.Orhidejas') }} @break
+                                                        @case('Peonijas'){{ __('messages.Peonijas') }} @break
+                                                        @case('Puskis Flora'){{ __('messages.Puskis_Flora') }} @break
+                                                        @case('Puskis Luiza') {{ __('Puskis_Luiza') }}  @break
+                                                        @case('Puskis Maja'){{ __('messages.Puskis_Maja') }}  @break
+                                                        @case('Puskis Milestiba') {{ __('messages.Puskis_Milestiba') }}  @break
+                                                        @case('Puskis Pavasara'){{ __('messages.Puskis_Pavasara') }} @break
+                                                        @case('Puskis Vasara'){{ __('messages.Puskis_Vasara') }} @break
+                                                        @case('Puskis Vesture') {{ __('messages.Puskis_Vesture') }}  @break
+                                                        @case('Puskis Ziema') {{ __('messages.Puskis_Ziema') }}  @break
+                                                        @case('Rozes'){{ __('messages.Rozes') }} @break
+                                                        @case('Tulpes') {{ __('messages.Tulpes') }} @break
+                                                    @endswitch
                                                     </h2>
                                                     <br>
                                                     <br>
-                                                    <h4>Ziedu skaits: 
+                                                    <h4>{{ __('messages.count_of_flowers') }}: 
                                                         {{$d->ZieduSkaits }}
                                                     </h4>
                                                     <br>
                                                     
                                                     {!! Form::open(array('action'=>'ShopController@store')) !!}
                                                     <div class="form-group">
-                                                        <h4><i>{{Form::label('count','Jaunais ziedu skaits')}}</i></h4>
-                                                        {{Form::text('count','',['class'=>'form-control','placeholder'=>'jaunais skaits...'])}}
+                                                        <h4><i>{{Form::label('count', __('messages.new_count_of_flowers'))}}</i></h4>
+                                                        {{Form::text('count','',['class'=>'form-control','placeholder'=>__('messages.new_count_of_flowers')])}}
                                                         @if ($errors->has('count'))
                                                         <span >
                                                             <strong>{{ $errors->first('count') }}</strong>
@@ -58,7 +79,7 @@
                                                     </div>
                                                     <input type="hidden" name="id" value="{{$d->id}}" />
                                                      <input type="hidden" name="veids" value="{{$d->ZiedaPuskaVeids}}" />
-                                                    {{Form::submit('Apstiprināt',['class'=>'btn btn-primary'])}}
+                                                    {{Form::submit( __('messages.Confirm'),['class'=>'btn btn-primary'])}}
                                                     {!! Form::close() !!}
                                                    
                                                    </div>
