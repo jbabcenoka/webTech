@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\EsosasPreces;
 use App\Piegadatajs;
 use App\Persona;
-use App\PardotieUnBojatie;
+use App\Pardotie;
 use App\Adrese;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,9 +28,9 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id = null)
+    public function create($id = null) ////Uz lapu - order-create
     {
-        
+
         if (Auth::check()) {
             if ($id != null && !(session()->has('flower_id') && session()->get('flower_id') == $id)) {
                 session()->put('flower_id', $id);
@@ -43,12 +43,12 @@ class OrderController extends Controller
             $cena = $piegveids[0]->CenaParVienu;
             $esamiba = $zieds->ZieduSkaits;
             if (session()->has('flower_id')){
-               // return $cena;
+                // return $cena;
                 return view('order_create',['cena' =>$cena,'kods'=>$kods,'esamiba'=>$esamiba,'flower' => EsosasPreces::findOrFail(session()->get('flower_id'))]);
             }else {
                 return view('order_create');
-                
-            }       
+
+            }
         }
         else{
             return redirect ('/login');
@@ -56,33 +56,33 @@ class OrderController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request) ///Jauna pasutijuma izveidosana
     {
 
         $validator = Validator::make($request->all(), [
-                    
-                    'name' => 'required|string|min:2|max:29',
-                    'surname' => 'required|string|min:2|max:29',
-                    'perskods' => 'required|string|min:12|max:12',
-                    'city' => 'required|string|min:2|max:19',
-                    'street' => 'required|string|min:2|max:19',
-                    'apartment' => 'required|integer',
-                    'phone' => 'required|integer',
-                    'count' => 'required|integer|min:1|max:'.$request->esamiba,
-                ]);
+
+            'name' => 'required|string|min:2|max:29',
+            'surname' => 'required|string|min:2|max:29',
+            'perskods' => 'required|string|min:12|max:12',
+            'city' => 'required|string|min:2|max:19',
+            'street' => 'required|string|min:2|max:19',
+            'apartment' => 'required|integer',
+            'phone' => 'required|integer',
+            'count' => 'required|integer|min:1|max:'.$request->esamiba,
+        ]);
 
         if ($validator->fails()) {
             return redirect('/'.$request->ziedaid)->withErrors($validator);
         }
         $new_count = $request->esamiba - $request->count;
         $z = EsosasPreces::where('ZiedaPuskaVeids', $request->veids)->get();
-  
+
         foreach($z as $d){
             $d->ZieduSkaits = $new_count;
             $d->save();
         }
-       
-      
+
+
         //adrese
         $adrese = new Adrese();
         $pilseta=$request->city;
@@ -111,21 +111,20 @@ class OrderController extends Controller
             $persona->save();
         }
         $lastperson = Persona::latest()->first()->id;
-       
+
         //pardotie
-        $pardotie = new PardotieUnBojatie();
+        $pardotie = new Pardotie();
         $pardotie->Skaits = $request->count;
         $pardotie->persona_id=$lastperson;
         $pardotie->Datums = now();
         $pardotie->PartijasKods = $request->kods;
         $pardotie->ZiedaPuskaVeids = $request->veids;
-        $pardotie->BooleanPard = true;
         $pardotie->users_id = Auth::user()->id;
         $pardotie->save();
         $id = $pardotie->id;
         session()->push('products',$id);
-        
-        
+
+
 
         return redirect('/allorders/'.Auth::user()->id);
     }
@@ -140,11 +139,11 @@ class OrderController extends Controller
     {
         //
     }
-    
+
     public function details(Request $request){
-       return redirect('/');
-        
-        
+        return redirect('/');
+
+
     }
 
     /**
@@ -181,3 +180,4 @@ class OrderController extends Controller
         //
     }
 }
+

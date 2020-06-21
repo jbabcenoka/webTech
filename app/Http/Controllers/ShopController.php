@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\ZieduGlabApstakli;
 use App\EsosasPreces;
 use Illuminate\Support\Facades\Validator;
-use App\PardotieUnBojatie;
+use App\Pardotie;
 use App\VeikalaDarbinieks;
 use App\Persona;
 use App\Piegadatajs;
@@ -19,6 +19,11 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Middleware
+    public function __construct() {
+        // only Admin have access
+        $this->middleware('admin');
+    }
     public function index()
     {
         $glab_apst= ZieduGlabApstakli::orderBy('ZiedaPuskaVeids')->get();
@@ -45,25 +50,25 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-                    'count' => 'required|integer|min:0', 
-         ]);
+            'count' => 'required|integer|min:0',
+        ]);
         if ($validator->fails()) {
             return redirect('/shop-orders')->withErrors($validator);
         }
-        
+
         $new_count = $request->count;
         $z = EsosasPreces::where('ZiedaPuskaVeids', $request->veids)->get();
-  
+
         foreach($z as $d){
             $d->ZieduSkaits = $new_count;
             $d->save();
         }
-       
-        
+
+
         return redirect('/shop-orders');
     }
 
-    
+
     /**
      * Display the specified resource.
      *
@@ -72,11 +77,11 @@ class ShopController extends Controller
      */
     public function show()
     {
-        $preces= PardotieUnBojatie::orderBy('users_id')->get();
+        $preces= Pardotie::orderBy('users_id')->get();
         $cena = Piegadatajs::orderBy('id')->get();
         $adrese = Adrese::orderBy('id')->get();
         $persona = Persona::orderBy('id')->get();
-        
+
         return view('users-orders',array('data'=>$preces, 'persona'=>$persona, 'adrese'=>$adrese, 'cena'=>$cena));
     }
     public function showEmploqees()
@@ -88,8 +93,8 @@ class ShopController extends Controller
         $amats_nos = Amats::pluck('AmataNosaukums');
         return view('emploqees',array('data'=>$darb, 'persona'=>$persona, 'adrese'=>$adrese, 'amats'=>$amats, 'amats_nos'=>$amats_nos ));
     }
-    
-    
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,9 +115,9 @@ class ShopController extends Controller
      */
     public function update(request $request)
     {
-        $order= PardotieUnBojatie::find($request->id);
+        $order= Pardotie::find($request->id);
         if($request->fulfilled ==1){
-        $order->Fulfilled=true;
+            $order->Fulfilled=true;
         } else $order->Fulfilled=false;
         $order->save();
         return redirect('/users-orders');
@@ -129,3 +134,4 @@ class ShopController extends Controller
         //
     }
 }
+

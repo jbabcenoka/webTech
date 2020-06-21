@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PardotieUnBojatie extends Model
+class Pardotie extends Model
 {
-   public $table = "pardotie_un_bojatie";
-    
-   public function esosas_preces() {
+    public $table = "pardotie";
+
+    public function esosas_preces() {
         return $this->belongsTo('App\EsosasPreces');
     }
     public function piegadatajs() {

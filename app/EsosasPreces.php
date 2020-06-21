@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class EsosasPreces extends Model
 {
-    public function pardotie_un_bojatie() {
-        return $this->hasMany('App\PardotieUnBojatie');
+    public function pardotie() {
+        return $this->hasMany('App\Pardotie');
     }
     public function ziedu_glab_apstakli() {
         return $this->belongsTo('App\ZieduGlabApstakli');
     }
-     public function piegadatajs() {
+    public function piegadatajs() {
         return $this->belongsTo('App\Piegadatajs');
     }
 }

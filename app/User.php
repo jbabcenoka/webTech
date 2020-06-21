@@ -36,8 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    
+    // determine if User is admin by checking DB field role (1 is admin)
+    public function isAdmin() {
+        return ($this->role == 1);
+    }
+
     public function gallery() {
         return $this->hasMany('App\Gallery');
     }

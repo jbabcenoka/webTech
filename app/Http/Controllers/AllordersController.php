@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\PardotieUnBojatie;
+use App\Pardotie;
 use App\Piegadatajs;
 
 class AllordersController extends Controller
@@ -17,17 +17,17 @@ class AllordersController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $data = PardotieUnBojatie::where('users_id','=',auth::id())->get();
+            $data = Pardotie::where('users_id','=',auth::id())->get();
             if(!$data->isEmpty()){
                 $i=0;
                 foreach($data as $d){
                     $piegveids = Piegadatajs::where('ZiedaPuskaVeids', $d->ZiedaPuskaVeids)->get('CenaParVienu');
-                    $cena[$i]=$piegveids[0]->CenaParVienu;  
+                    $cena[$i]=$piegveids[0]->CenaParVienu;
                     $i++;
                 }
 
                 return view('orders',['data'=>$data],['cena'=>$cena]);
-                
+
             } else{
                 return view('orders',['data'=>$data]);
             }

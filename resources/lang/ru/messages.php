@@ -56,7 +56,7 @@ return [
     'Submit'=>'Подтвердить',
     'New_galary_image'=>'Новая картинка',
     'Choose_file'=>'Выбрать файл',
-    'Save'=>'Созранить',
+    'Save'=>'Сохранить',
     'Welcome_to_flower_shop' => 'Приветствуем в магазине',
     'You_are_logged_in'=>'Вы зашли',
     'Total'=>'Всего',
@@ -100,9 +100,9 @@ return [
     'Puskis_Milestiba'=>'Букет Любовь',
     'Puskis_Pavasara'=>'Весенний букет',
     'Puskis_Vasara'=>'Летний букет',
-    'Puskis_Vesture'=>'Исторический букет',
+    'Puskis_Vesture'=>'Букет истории',
     'Puskis_Ziema'=>'Зимний букет',
     'Rozes'=>'Розы',
     'Tulpes'=>'Тюльпаны',
-    
-]; 
+
+];

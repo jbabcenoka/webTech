@@ -91,20 +91,20 @@ return [
     'Krizantemas'=>'Krizantemas',
     'Lavanda'=>'Lavanda',
     'Lilijas'=>'Lilijas',
-    'Nelkes'=>'Nelkes',
+    'Nelkes'=>'Neļķes',
     'Orhidejas'=>'Orhidejas',
     'Peonijas'=>'Peonijas',
-    'Puskis_Flora'=>'Puskis Flora',
-    'Puskis_Luiza'=>'Puskis Luiza',
-    'Puskis_Maja'=>'Puskis Maja',
-    'Puskis_Milestiba'=>'Puskis_Milestiba',
-    'Puskis_Pavasara'=>'Puskis_Pavasara',
-    'Puskis_Vasara'=>'Puskis_Vasara',
-    'Puskis_Vesture'=>'Puskis_Vesture',
-    'Puskis_Ziema'=>'Puskis_Ziema',
+    'Puskis_Flora'=>'Pušķis Flora',
+    'Puskis_Luiza'=>'Pušķis Luiza',
+    'Puskis_Maja'=>'Pušķis Maja',
+    'Puskis_Milestiba'=>'Pušķis Mīlestība',
+    'Puskis_Pavasara'=>'Pušķis Pavasara',
+    'Puskis_Vasara'=>'Pušķis Vasara',
+    'Puskis_Vesture'=>'Pušķis Vēsture',
+    'Puskis_Ziema'=>'Pušķis Ziema',
     'Rozes'=>'Rozes',
     'Tulpes'=>'Tulpes',
-    
-    
-    
-]; 
+
+
+
+];

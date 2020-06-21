@@ -21,34 +21,32 @@ class GalleryController extends Controller
         return view('gallery',['data'=>$data]);
     }
 
-    
+
     public function store(Request $request)
     {
-        $var = new Gallery; 
+        $var = new Gallery;
         $var->users_id = 1;
         $var->name = "name";
-        
-        
-        
+
         $file = $request->file('image');
-        $img = Image::make($file);
+        $img = Image::make($file); ////Bildes lasisana
         Response::make($img->encode('jpeg'));
-       
+
         $var->image = $img;
-        
+
         $var->save();
-       
+
 
         return redirect('/gallery');
 
-         
+
     }
 
-  
+
     public function upload()
-    {        
+    {
         ///
-       
+
     }
 
     /**

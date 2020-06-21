@@ -7,6 +7,7 @@ use App\Adrese;
 use App\VeikalaDarbinieks;
 use App\Persona;
 use App\Amats;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class VeikalsController extends Controller
@@ -16,6 +17,8 @@ class VeikalsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         return view('about');
@@ -40,20 +43,36 @@ class VeikalsController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-                    'name' => 'required|string|min:2|max:29',
-                    'surname' => 'required|string|min:2|max:29',
-                    'phone' => 'required|integer',
-                    'perskods' => 'required|string|min:12|max:12',
-                    'city' => 'required|string|min:2|max:19',
-                    'street' => 'required|string|min:2|max:19',
-                    'apartment' => 'required|integer|min:1',
-                    'amats' => 'required',
-                    'alga' => 'required|min:1|numeric',
-                    'atval_from' => 'required|after:today',
-                    'atval_to' => 'required||after:atval_from',
+            'name' => 'required|string|min:2|max:29',
+            'surname' => 'required|string|min:2|max:29',
+            'phone' => 'required|integer',
+            'perskods' => 'required|string|min:12|max:12',
+            'city' => 'required|string|min:2|max:19',
+            'street' => 'required|string|min:2|max:19',
+            'apartment' => 'required|integer|min:1',
+            'amats' => 'required',
+            'alga' => 'required|min:1|numeric',
+            'atval_from' => 'required|after:today',
+            'atval_to' => 'required||after:atval_from',
         );
-        $this->validate($request, $rules); 
-        
+        $this->validate($request, $rules);
+
+        $darb_pers= VeikalaDarbinieks::orderBy('id')->get();
+        $pers= Persona::orderBy('id')->get('id');
+        foreach($darb_pers as $d){
+            $persk=$d->Persona_id;
+            foreach($pers as $p){
+                if ($persk==$p->id)
+                {
+                    $p = Persona::find($p->id);
+                    if($request->perskods === $p->PersKods)
+                    {
+                        return back()->with('error', 'Error! Human with this personal code is working in our shop! ');
+                    }
+                }
+            }
+        }
+
         //adrese
         $adrese= Adrese::orderBy('id')->get();
         $flag=false;
@@ -65,7 +84,7 @@ class VeikalsController extends Controller
                 $lastAdress = $a->id;
                 $flag=true;
             }
-        } 
+        }
         if (!$flag) {
             $adrese = new Adrese();
             $adrese->Pilseta=$pilseta;
@@ -73,16 +92,14 @@ class VeikalsController extends Controller
             $adrese->MajasN=$apartment;
             $adrese->save();
             $lastAdress = Adrese::latest()->first()->id;
-        } 
-        
+        }
+
         //persona
         $name = $request->name;
         $surname = $request->surname;
         $perskods = $request->perskods;
         $phone = $request->phone;
-        
-        
-        
+
         $persona = new Persona();
         $persona->PersKods=$perskods;
         $persona->Vards=$name;
@@ -92,9 +109,8 @@ class VeikalsController extends Controller
         $persona->adrese_id=$lastAdress;
         $persona->save();
         $lastperson = Persona::latest()->first()->id;
-        
-        
-        //veikalaDarbinieks
+
+        //VeikalaDarbinieks
         $darb = new VeikalaDarbinieks();
         $darb->DarbaAlga = $request->alga;
         $darb->AtvalinajumaSakums = $request->atval_from;
@@ -102,7 +118,7 @@ class VeikalsController extends Controller
         $darb->Persona_id = $lastperson;
         $darb->Amats_id = $request->amats;
         $darb->save();
-        return redirect('/emploqees');
+        return redirect('/emploqees')->with('success1', 'Successfully added new employee!');
     }
 
     /**
@@ -147,8 +163,12 @@ class VeikalsController extends Controller
      */
     public function destroy($id)
     {
-         $darbinieks = VeikalaDarbinieks::find($id);
-         $darbinieks = $darbinieks->delete();
-         return redirect('/emploqees');
+
+        $darbinieks = VeikalaDarbinieks::find($id);
+        $darbinieka_pk = $darbinieks->Persona_id;
+        $darbinieks = $darbinieks->delete();
+        $pk = Persona::find($darbinieka_pk);
+        $pk = $pk->delete();
+        return redirect('/emploqees')->with('success', 'Successfully deleted employee!');
     }
 }
